@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Card Display</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/cerulean/bootstrap.min.css"
+    />
+    <style>
+      .info-section {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div
+        class="row row-cols-4"
+        id="cards-row"
+      >
+        <!-- Cards will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Sample data - replace this with your actual JSON data
+      const data = [
+        {
+          filename: "85_1_0_20170120222635457.jpg",
+          age: "85",
+          gender: "female",
+          race: "White",
+        },
+        {
+          filename: "53_0_3_20170119201334485.jpg",
+          age: "53",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "30_0_2_20170119204746406.jpg",
+          age: "30",
+          gender: "male",
+          race: "Asian",
+        },
+        {
+          filename: "75_1_0_20170120225821626.jpg",
+          age: "75",
+          gender: "female",
+          race: "White",
+        },
+        {
+          filename: "68_0_3_20170119184302094.jpg",
+          age: "68",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "58_0_0_20170120224549744.jpg",
+          age: "58",
+          gender: "male",
+          race: "White",
+        },
+        {
+          filename: "32_1_1_20170115235516131.jpg",
+          age: "32",
+          gender: "female",
+          race: "Black",
+        },
+        {
+          filename: "54_0_1_20170120223426436.jpg",
+          age: "54",
+          gender: "male",
+          race: "Black",
+        },
+        {
+          filename: "26_1_3_20170119193144114.jpg",
+          age: "26",
+          gender: "female",
+          race: "Indian",
+        },
+        {
+          filename: "26_0_3_20170119155839538.jpg",
+          age: "26",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "45_0_3_20170119202044372.jpg",
+          age: "45",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "22_1_3_20170119155949578.jpg",
+          age: "22",
+          gender: "female",
+          race: "Indian",
+        },
+        {
+          filename: "30_1_3_20170119205414159.jpg",
+          age: "30",
+          gender: "female",
+          race: "Indian",
+        },
+        {
+          filename: "38_0_1_20170117022513719.jpg",
+          age: "38",
+          gender: "male",
+          race: "Black",
+        },
+        {
+          filename: "25_0_3_20170119171838017.jpg",
+          age: "25",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "44_0_3_20170119171650408.jpg",
+          age: "44",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "45_0_3_20170119201251044.jpg",
+          age: "45",
+          gender: "male",
+          race: "Indian",
+        },
+        {
+          filename: "58_0_0_20170120224609760.jpg",
+          age: "58",
+          gender: "male",
+          race: "White",
+        },
+        {
+          filename: "73_0_0_20170120225937921.jpg",
+          age: "73",
+          gender: "male",
+          race: "White",
+        },
+        {
+          filename: "24_0_0_20170119151341215.jpg",
+          age: "24",
+          gender: "male",
+          race: "White",
+        },
+      ];
+
+      function toggleInfo(event) {
+        const infoSection = event.currentTarget.nextElementSibling; // The info section is the next sibling of the button
+        infoSection.style.display =
+          infoSection.style.display === "none" ? "block" : "none";
+      }
+
+      function generateCards() {
+        const cardsRow = document.getElementById("cards-row");
+        let htmlContent = "";
+
+        data.forEach((item, index) => {
+          let cardHTML = `
+            <div class="col m-3">
+                <div class="card h-100 ">
+                    <h5 class="card-title bg-warning text-white">Person ${
+                      index + 1
+                    }</h5>
+                    <img src="sample/${
+                      item.filename
+                    }" class="card-img-top img-fluid" alt="Image">
+                    <div class="card-body d-flex flex-column">
+                    <div class="mt-auto">
+                        <button class="btn btn-lg btn-outline-info mb-3" onclick="toggleInfo(event)">Info</button>
+                        <div class="info-section">
+                            <p class="card-text">Age: ${item.age}</p>
+                            <p class="card-text">Gender: ${item.gender}</p>
+                            <p class="card-text">Race: ${item.race}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        `;
+          htmlContent += cardHTML;
+        });
+
+        cardsRow.innerHTML = htmlContent;
+      }
+
+      // Call generateCards on page load
+      window.onload = generateCards;
+    </script>
+  </body>
+</html>
